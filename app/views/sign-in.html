@@ -1,0 +1,48 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Sign in
+      </h1>{{releaseVersion | log }}
+
+
+      <form action="task-list" method="post" class="form govuk-!-padding-top-7">
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          id: "email-address",
+          type: "email",
+          name: "email-address"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Password"
+          },
+          id: "email-address",
+          type: "password",
+          name: "email-address"
+        }) }}
+
+        {{ govukButton({
+          text: "Sign in",
+          classes: "govuk-!-margin-right-1"
+        }) }}
+
+      </form>
+
+    </div>
+</div>
+
+{% endblock %}

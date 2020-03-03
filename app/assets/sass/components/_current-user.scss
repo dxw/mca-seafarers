@@ -1,0 +1,9 @@
+.current-user {
+  display: grid;
+  justify-items: end;
+  @include govuk-responsive-margin(6, "bottom");
+
+  p {
+    margin-bottom: 0;
+  }
+}

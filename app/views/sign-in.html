@@ -12,27 +12,25 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
         Sign in
-      </h1>{{releaseVersion | log }}
+      </h1>
 
-
-      <form action="task-list" method="post" class="form govuk-!-padding-top-7">
+      <form action="/authenticate" method="post" class="form govuk-!-padding-top-7">
 
         {{ govukInput({
           label: {
-            text: "Email address"
+            text: "Username"
           },
-          id: "email-address",
-          type: "email",
-          name: "email-address"
+          id: "username",
+          name: "username"
         }) }}
 
         {{ govukInput({
           label: {
             text: "Password"
           },
-          id: "email-address",
+          id: "password",
           type: "password",
-          name: "email-address"
+          name: "password"
         }) }}
 
         {{ govukButton({

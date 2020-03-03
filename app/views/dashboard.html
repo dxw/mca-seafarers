@@ -1,0 +1,21 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "includes/current-user.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Dashboard
+      </h1>
+    </div>
+</div>
+
+{% endblock %}

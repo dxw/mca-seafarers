@@ -1,4 +1,3 @@
-{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
@@ -24,7 +23,7 @@
     <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
       {{ govukButton({
         text: "Start a new assessment",
-        href: "#"
+        href: "new-assessment"
       }) }}
     </div>
   </div>
@@ -33,80 +32,178 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {{ govukTable({
-        caption: "Current assessments",
-        firstCellIsHeader: false,
-        head: [
-          {
-            text: "ID"
-          },
-          {
-            text: "Candidate name"
-          },
-          {
-            text: "Status"
-          },
-          {
-            text: "Created"
-          },
-          {
-            text: "Last updated"
-          }
-        ],
-        rows: [
-          [
+      {% if data["newAssessment"] %}
+
+        {{ govukTable({
+          caption: "Current assessments",
+          firstCellIsHeader: false,
+          head: [
             {
-              html: "<a href='#' class='govuk-link'>3957</a>"
+              text: "ID"
             },
             {
-              html: "<a href='#' class='govuk-link'>Kirsty Smith</a>"
+              text: "Candidate name"
             },
             {
-              html: "<strong class='govuk-tag govuk-tag--orange'>Sent</strong>"
+              text: "Status"
             },
             {
-              text: "9 March 2020"
+              text: "Created"
             },
             {
-              text: "10 March 2020"
+              text: "Last updated"
             }
           ],
-          [
-            {
-              html: "<a href='#' class='govuk-link'>3959</a>"
-            },
-            {
-              html: "<a href='#' class='govuk-link'>Martha Harri</a>"
-            },
-            {
-              html: "<strong class='govuk-tag govuk-tag--green'>Started</strong>"
-            },
-            {
-              text: "9 March 2020"
-            },
-            {
-              text: "10 March 2020"
-            }
-          ],
-          [
-            {
-              html: "<a href='#' class='govuk-link'>3961</a>"
-            },
-            {
-              html: "<a href='#' class='govuk-link'>Richard Johnson</a>"
-            },
-            {
-              html: "<strong class='govuk-tag govuk-tag--red'>Not passed</strong>"
-            },
-            {
-              text: "9 March 2020"
-            },
-            {
-              text: "10 March 2020"
-            }
+          rows: [
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3957</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>" + data['candidate-name'] + "</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--orange'>Sent</strong>"
+              },
+              {
+                text: "12 March 2020"
+              },
+              {
+                text: "12 March 2020"
+              }
+            ],
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3957</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>Kirsty Smith</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--orange'>Sent</strong>"
+              },
+              {
+                text: "9 March 2020"
+              },
+              {
+                text: "10 March 2020"
+              }
+            ],
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3959</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>Martha Harris</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--green'>Started</strong>"
+              },
+              {
+                text: "9 March 2020"
+              },
+              {
+                text: "10 March 2020"
+              }
+            ],
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3961</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>Richard Johnson</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--red'>Not passed</strong>"
+              },
+              {
+                text: "9 March 2020"
+              },
+              {
+                text: "10 March 2020"
+              }
+            ]
           ]
-        ]
-      }) }}
+        }) }}
+
+      {% else %}
+
+        {{ govukTable({
+          caption: "Current assessments",
+          firstCellIsHeader: false,
+          head: [
+            {
+              text: "ID"
+            },
+            {
+              text: "Candidate name"
+            },
+            {
+              text: "Status"
+            },
+            {
+              text: "Created"
+            },
+            {
+              text: "Last updated"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3957</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>Kirsty Smith</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--orange'>Sent</strong>"
+              },
+              {
+                text: "9 March 2020"
+              },
+              {
+                text: "10 March 2020"
+              }
+            ],
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3959</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>Martha Harri</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--green'>Started</strong>"
+              },
+              {
+                text: "9 March 2020"
+              },
+              {
+                text: "10 March 2020"
+              }
+            ],
+            [
+              {
+                html: "<a href='#' class='govuk-link'>3961</a>"
+              },
+              {
+                html: "<a href='#' class='govuk-link'>Richard Johnson</a>"
+              },
+              {
+                html: "<strong class='govuk-tag govuk-tag--red'>Not passed</strong>"
+              },
+              {
+                text: "9 March 2020"
+              },
+              {
+                text: "10 March 2020"
+              }
+            ]
+          ]
+        }) }}
+
+      {% endif %}
 
     </div>
   </div>

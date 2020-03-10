@@ -1,0 +1,56 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+{% block content %}
+
+  {% include "includes/current-user.html" %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Create a new assessment
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-1">
+
+      <form action="/dashboard?newAssessment=true" method="post" class="form govuk-!-padding-top-7">
+
+        {{ govukInput({
+          label: {
+            text: "Candidate name"
+          },
+          id: "candidate-name",
+          name: "candidate-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Candidate email address"
+          },
+          id: "candidate-email",
+          name: "candidate-email",
+          type: "email"
+        }) }}
+
+        {{ govukButton({
+          text: "Create assessment"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}

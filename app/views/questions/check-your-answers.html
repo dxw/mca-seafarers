@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "question-2"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Check your answers before sending your assessment</h1>
+
+      {# <h2 class="govuk-heading-m">Personal details</h2> #}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Etiam porta sem malesuada magna mollis euismod?"
+            },
+            value: {
+              html: data["question-1-answer"] + "<span class='govuk-body-s'> (" + data["question-1-confidence"] + ")</span>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "question-1",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Donec ullamcorper nulla non metus auctor fringilla?"
+            },
+            value: {
+              html: data["question-2-answer"] + "<span class='govuk-body-s'> (" + data["question-2-confidence"] + ")</span>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "question-2",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <h2 class="govuk-heading-m">Now send your assessment</h2>
+
+      <p class="govuk-body">By submitting this assessment you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      <form action="/form-handler" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        {{ govukButton({
+          text: "Submit your assessment",
+          href: "confirmation"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

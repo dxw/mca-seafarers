@@ -10,6 +10,8 @@ router.post('/authenticate', function (req, res) {
 
   if (req.session.data['username'] == 'admin') {
     res.redirect('dashboard')
+  } else if (req.session.data['username'] == 'candidate') {
+    res.redirect('assessment')
   } else {
     res.redirect('/')
   }

@@ -1,0 +1,94 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="question-1">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="check-your-answers" method="post">
+
+        <span class="govuk-caption-xl">Question 2 of 10</span>
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "question-2-answer",
+          name: "question-2-answer",
+          fieldset: {
+            legend: {
+              text: "Donec ullamcorper nulla non metus auctor fringilla?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("question-2-answer", "Yes")
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("question-2-answer", "No")
+            }
+          ]
+        }) }}
+
+
+        {{ govukRadios({
+          classes: "govuk-radios--small",
+          idPrefix: "question-2-confidence",
+          name: "question-2-confidence",
+          fieldset: {
+            legend: {
+              text: "How confident are you about this answer?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m govuk-!-margin-top-5"
+            }
+          },
+          items: [
+            {
+              value: "very confident",
+              text: "Very confident",
+              checked: checked("question-2-confidence", "Very confident")
+            },
+            {
+              value: "confident",
+              text: "Confident",
+              checked: checked("question-2-confidence", "Confident")
+            },
+            {
+              value: "unconfident",
+              text: "Unconfident",
+              checked: checked("question-2-confidence", "Unconfident")
+            },
+            {
+              value: "very unconfident",
+              text: "Very unconfident",
+              checked: checked("question-2-confidence", "Very unconfident")
+            }
+          ]
+        }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

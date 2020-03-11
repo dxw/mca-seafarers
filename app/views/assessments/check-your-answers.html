@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "3958"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-xl">Assessment ID: 3958/{{ data["candidate-name"] }}</span>
+      <h1 class="govuk-heading-xl">Check your marking before submitting</h1>
+
+      {# <h2 class="govuk-heading-m">Personal details</h2> #}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              html: "Etiam porta sem malesuada magna mollis euismod?<br/><span class='govuk-body-s'>(Answer: " + data["question-1-answer"] + ", " + data["question-1-confidence"] + ")</span>"
+            },
+            value: {
+              text: data["question-1-mark"]
+            },
+            actions: {
+              items: [
+                {
+                  href: "3958#q1",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: "Donec ullamcorper nulla non metus auctor fringilla?<br/><span class='govuk-body-s'>(Answer: " + data["question-2-answer"] + ", " + data["question-2-confidence"] + ")</span>"
+            },
+            value: {
+              text: data["question-2-mark"]
+            },
+            actions: {
+              items: [
+                {
+                  href: "3958#q2",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <h2 class="govuk-heading-m">Now submit your marking</h2>
+
+      <p class="govuk-body">By submitting this marking you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      <form action="/form-handler" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        {{ govukButton({
+          text: "Submit your marking",
+          href: "confirmation"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

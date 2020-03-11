@@ -126,7 +126,7 @@
           ]
         }) }}
 
-      {% elseif data["newAssessment"] == "true" and data["question-1-answer"] | length > 1 %}
+      {% elseif data["newAssessment"] == "true" and data["question-1-answer"] | length > 1 and data["question-1-mark"] | length < 1 %}
 
         {{ govukTable({
           caption: "Current assessments",
@@ -151,10 +151,10 @@
           rows: [
             [
               {
-                html: "<a href='#' class='govuk-link'>3958</a>"
+                html: "<a href='/assessments/3958' class='govuk-link'>3958</a>"
               },
               {
-                html: "<a href='#' class='govuk-link'>" + data['candidate-name'] + "</a>"
+                html: "<a href='/assessments/3958' class='govuk-link'>" + data['candidate-name'] + "</a>"
               },
               {
                 html: "<strong class='govuk-tag govuk-tag--orange'>Received</strong>"
@@ -219,6 +219,100 @@
             ]
           ]
         }) }}
+
+        {% elseif data["newAssessment"] == "true" and data["question-1-answer"] | length > 1 and data["question-1-mark"] | length > 1 %}
+
+          {{ govukTable({
+            caption: "Current assessments",
+            firstCellIsHeader: false,
+            head: [
+              {
+                text: "ID"
+              },
+              {
+                text: "Candidate name"
+              },
+              {
+                text: "Status"
+              },
+              {
+                text: "Created"
+              },
+              {
+                text: "Last updated"
+              }
+            ],
+            rows: [
+              [
+                {
+                  html: "<a href='/assessments/3958' class='govuk-link'>3958</a>"
+                },
+                {
+                  html: "<a href='/assessments/3958' class='govuk-link'>" + data['candidate-name'] + "</a>"
+                },
+                {
+                  html: "<strong class='govuk-tag govuk-tag--green'>Passed</strong>"
+                },
+                {
+                  text: "12 March 2020"
+                },
+                {
+                  text: "12 March 2020"
+                }
+              ],
+              [
+                {
+                  html: "<a href='#' class='govuk-link'>3957</a>"
+                },
+                {
+                  html: "<a href='#' class='govuk-link'>Kirsty Smith</a>"
+                },
+                {
+                  html: "<strong class='govuk-tag govuk-tag--blue'>Sent</strong>"
+                },
+                {
+                  text: "9 March 2020"
+                },
+                {
+                  text: "10 March 2020"
+                }
+              ],
+              [
+                {
+                  html: "<a href='#' class='govuk-link'>3959</a>"
+                },
+                {
+                  html: "<a href='#' class='govuk-link'>Martha Harris</a>"
+                },
+                {
+                  html: "<strong class='govuk-tag govuk-tag--green'>Passed</strong>"
+                },
+                {
+                  text: "9 March 2020"
+                },
+                {
+                  text: "10 March 2020"
+                }
+              ],
+              [
+                {
+                  html: "<a href='#' class='govuk-link'>3961</a>"
+                },
+                {
+                  html: "<a href='#' class='govuk-link'>Richard Johnson</a>"
+                },
+                {
+                  html: "<strong class='govuk-tag govuk-tag--red'>Not passed</strong>"
+                },
+                {
+                  text: "9 March 2020"
+                },
+                {
+                  text: "10 March 2020"
+                }
+              ]
+            ]
+          }) }}
 
       {% else %}
 

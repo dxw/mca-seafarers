@@ -1,0 +1,107 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/dashboard">Back</a>
+  {% include "includes/current-user.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">Assessment ID: 3958/{{ data["candidate-name"] }}</span>
+      <h1 class="govuk-heading-xl">
+        Mark an assessment
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+        <ul class="govuk-list">
+
+          <li id="q1">
+            <span class="govuk-caption-m">Question 1</span>
+            <h2 class="govuk-heading-m">Etiam porta sem malesuada magna mollis euismod?</h2>
+            <p>Candidate answer: <strong>{{ data["question-1-answer"] }}</strong>, confidence level: <strong>{{ data["question-1-confidence"] }}</strong></p>
+
+            {{ govukRadios({
+              classes: "govuk-radios--inline govuk-radios--small",
+              idPrefix: "question-1-mark",
+              name: "question-1-mark",
+              fieldset: {
+                legend: {
+                  text: "Is this answer correct?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Correct",
+                  text: "Correct",
+                  checked: checked("question-1-mark", "Correct")
+                },
+                {
+                  value: "Incorrect",
+                  text: "Incorrect",
+                  checked: checked("question-1-mark", "Incorrect")
+                }
+              ]
+            }) }}
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          </li>
+
+          <li id="q2">
+            <span class="govuk-caption-m">Question 2</span>
+            <h2 class="govuk-heading-m">Donec ullamcorper nulla non metus auctor fringilla?</h2>
+            <p>Candidate answer: <strong>{{ data["question-2-answer"] }}</strong>, confidence level: <strong>{{ data["question-2-confidence"] }}</strong></p>
+            {{ govukRadios({
+              classes: "govuk-radios--inline govuk-radios--small",
+              idPrefix: "question-2-mark",
+              name: "question-2-mark",
+              fieldset: {
+                legend: {
+                  text: "Is this answer correct?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Correct",
+                  text: "Correct",
+                  checked: checked("question-1-mark", "Correct")
+                },
+                {
+                  value: "Incorrect",
+                  text: "Incorrect",
+                  checked: checked("question-1-mark", "Incorrect")
+                }
+              ]
+            }) }}
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          </li>
+
+        </ul>
+
+        <div class="govuk-!-margin-top-9">
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
